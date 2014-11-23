@@ -3,6 +3,9 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
+This the new game app. Will update the read doc as I add new steps.
+1. Cloned protov1_app, will first add the gmap and try to make it look better. (branch 1xss)
+
 Things you may want to cover:
 
 * Ruby version
