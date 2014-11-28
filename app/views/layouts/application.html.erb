@@ -9,14 +9,18 @@
     <%= render 'layouts/shim' %>
   </head>
   <body>
-    <%= render 'layouts/header' %>
     <div class="container">
+      <%= render 'layouts/header' %>
+    </div>
+    <div class="container full-screen-custom">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
       <%= yield %>
+    </div>
+    <div class="container"> 
       <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
+      <%= debug(params) if Rails.env.development? %> 
     </div>
   </body>
 </html>
