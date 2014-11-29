@@ -1,0 +1,1 @@
+json.extract! @game, :address, :description, :latitude, :longitude, :user_id, :sport, :game_time, :created_at, :updated_at

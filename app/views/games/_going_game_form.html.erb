@@ -1,0 +1,9 @@
+<% unless current_user?(@user) %>
+  <div id="going_game_form">
+  <% if current_user.already_going?(@game) %>
+    <%= render 'games/not_going' %>
+  <% else %>
+    <%= render 'games/going' %>
+  <% end %>
+  </div>
+<% end %>

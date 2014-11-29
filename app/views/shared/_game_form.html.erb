@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@game) do |f| %>
+
+      <%= f.label :address %>
+      <%= f.text_field :address, placeholder: "Newyork usa"%>
+
+      <%= f.label :sport %>
+      <%= f.text_field :sport, placeholder: "Cricket, Football"%>     
+
+      <%= f.label :description %>
+      <%= f.text_area :description,  placeholder: "Add a small description..."%>
+
+      <%= f.label :game_time %>
+      <%= f.datetime_select :game_time, :order => [:month, :day, :year], :minute_step => 15 %>
+
+
+  	<%= f.submit "Post", class: "btn btn-large btn-primary" %>
+	<% end %>
+ </div>
+</div>
