@@ -10,6 +10,11 @@ class StaticPagesController < ApplicationController
 	@hash = Gmaps4rails.build_markers(@game) do |game, marker|
   	marker.lat game.latitude
   	marker.lng game.longitude
+  	marker.picture({
+  		url: "/assets/images/cricket.png",
+  		width: "32",
+  		height: "32"
+  		})  	
     marker.infowindow render_to_string(:partial => 'games/show', :layout => false, :locals => { :@game => game })   
     end
   end
