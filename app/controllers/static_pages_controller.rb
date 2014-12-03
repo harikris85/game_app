@@ -11,7 +11,7 @@ class StaticPagesController < ApplicationController
   	marker.lat game.latitude
   	marker.lng game.longitude
   	marker.picture({
-  		url: "/assets/images/cricket.png",
+  		url: "/assets/cricket.png",
   		width: "32",
   		height: "32"
   		})  	
