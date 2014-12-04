@@ -10,8 +10,18 @@ class StaticPagesController < ApplicationController
 	@hash = Gmaps4rails.build_markers(@game) do |game, marker|
   	marker.lat game.latitude
   	marker.lng game.longitude
+    if (game.sport == "Football")
+      image = "/assets/soccer.png"
+    elsif (game.sport == "Cricket")
+      image = "/assets/cricket.png"
+    elsif (game.sport == "Basket ball")
+      image = "/assets/basketball.png"
+    else
+      image = "/assets/volleyball.png"
+    end
+
   	marker.picture({
-  		url: "/assets/cricket.png",
+  		url: image,
   		width: 32,
   		height: 37
   		})  	
