@@ -3,9 +3,9 @@
     <%= form_for(:display_game_map, url: display_game_map_index_path) do |f| %>
 
       <%= f.label :sport %>
-      <%= f.text_field :sport, placeholder: "Search games..."%>
+      <%= f.select :sport, options_for_select(%w[Cricket Football])%>
 
-  	<%= f.submit "Search", class: "btn btn-large btn-primary" %>
+  	<%= f.submit "Search Sport", class: "btn btn-large btn-primary" %>
 	<% end %>
  </div>
 </div>
