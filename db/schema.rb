@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141129011323) do
+ActiveRecord::Schema.define(version: 20141207034231) do
+
+  create_table "gamers", force: true do |t|
+    t.integer  "player_id"
+    t.integer  "going_game_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "gamers", ["going_game_id"], name: "index_gamers_on_going_game_id"
+  add_index "gamers", ["player_id", "going_game_id"], name: "index_gamers_on_player_id_and_going_game_id", unique: true
+  add_index "gamers", ["player_id"], name: "index_gamers_on_player_id"
 
   create_table "games", force: true do |t|
     t.string   "address"

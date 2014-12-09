@@ -14,11 +14,13 @@
   		    <%= @game.game_time %>
 		</p>
     <p>
-    <!--
-    <div id="show_game_form">
-         
-    </div>    
-    -->  
+      <div id="show_game_form">
+        <% if signed_in? %>
+          <%= render 'games/going_game_form' %>
+        <% else %>
+          <%= link_to "Sign up to join game", signup_path, class: "btn btn-large btn-primary" %>
+        <% end %>
+      </div>  
     </p>   
     </section>
   </aside>

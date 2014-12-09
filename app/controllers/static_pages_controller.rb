@@ -14,7 +14,7 @@ class StaticPagesController < ApplicationController
       image = "/assets/soccer.png"
     elsif (game.sport == "Cricket")
       image = "/assets/cricket.png"
-    elsif (game.sport == "Basket ball")
+    elsif (game.sport == "Basketball")
       image = "/assets/basketball.png"
     else
       image = "/assets/volleyball.png"

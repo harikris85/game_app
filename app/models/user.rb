@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :games, dependent: :destroy
+  has_many :gamers, foreign_key: "player_id", dependent: :destroy
+  has_many :going_games, through: :gamers, source: :going_game
   before_save { self.email = email.downcase }
   before_create :create_remember_token	
   validates :name,  presence: true, length: { maximum: 50 }
@@ -14,6 +16,18 @@ class User < ActiveRecord::Base
 
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  def already_going?(this_game)
+    gamers.find_by(going_game_id: this_game.id)
+  end
+
+  def going!(this_game)
+    gamers.create!(going_game_id: this_game.id)
+  end
+
+  def not_going!(this_game)
+    gamers.find_by(going_game_id: this_game.id).destroy
   end
 
   private
