@@ -1,18 +1,50 @@
 <% provide(:title, @user.name) %>
 <header class="user_show_page_image">
-<div class="container-fluid">
-  <aside class="col-md-4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
-</div>
- <div class="container-fluid">
-     <section>
-       <%= render 'shared/game_form' %>
-     </section>
- </div>
+
+  <div class="padding">
+    <div class="full col-sm-9">
+                      
+      <!-- content -->                      
+      <div class="row">
+        
+       <!-- main col left --> 
+       <div class="col-sm-2">
+          <div class="panel panel-default"> 
+            <div class="panel-body">
+               <h4>
+                <%= gravatar_for @user %>
+                <%= @user.name %>
+              </h4>           
+            </div>
+          </div>
+
+          <div class="panel panel-default"> 
+            <div class="panel-heading"> 
+              <h4> User Stats </h4>
+            </div>
+            <div class="panel-body">
+              <h4> All stats here </h4>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-7">    
+          <div class="panel panel-default"> 
+            <div class="panel-heading"> 
+              <h4> Game information </h4>
+            </div>
+            <div class="panel-body">
+              <h4> Paginate all games here </h4>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-sm-3">
+           <%= render 'shared/game_form' %>
+        </div> 
+
+      </div>
+     </div>
  </header>
