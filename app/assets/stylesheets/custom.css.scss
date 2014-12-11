@@ -246,6 +246,31 @@ footer {
   color:#555555;
 }
 
+.panel-transparent {
+    background: none;
+    border: 0;
+}
+
+.my_game {
+
+  list-style: none;
+
+  .my_game_sport {
+    display: block;
+    margin-left: 60px;
+  }
+  .my_game_address {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+}
+
 /* User profile */
 
 .intro {

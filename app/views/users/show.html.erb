@@ -29,15 +29,54 @@
 
         </div>
 
-        <div class="col-sm-7">    
+        <div class="col-sm-7">   
+
           <div class="panel panel-default"> 
             <div class="panel-heading"> 
-              <h4> Game information </h4>
+              <h4> 
+                <% if @user.games.any? %>
+                  My Games (<%= @user.games.count %>)
+                <% end %>
+              </h4>
             </div>
             <div class="panel-body">
-              <h4> Paginate all games here </h4>
+              <% if @user.games.any? %>
+                <% for @my_game in @my_games %>
+                <ol class="list-group">
+                  <li class="list-group-item my_game" > 
+                    <h4 class = "my_game_sport" ><%= @my_game.sport %> </h4> 
+                    <h4 class = "my_game_address"> <%= @my_game.address %> </h4>
+                  </li>
+                </ol>
+                <% end %>
+                <%= will_paginate @my_games %>
+              <% end %>
             </div>
           </div>
+
+          <div class="panel panel-default"> 
+            <div class="panel-heading"> 
+              <h4>
+                <% if @user.going_games.any? %>
+                  Going Games (<%= @user.going_games.count %>)
+                <% end %>  
+              </h4>
+            </div>
+            <div class="panel-body">
+              <% if @user.going_games.any? %>
+                <% for @game in @going_games %>
+                <ol class="list-group">
+                  <li class="list-group-item my_game" > 
+                    <h4 class = "my_game_sport" ><%= @game.sport %> </h4>
+                    <h4 class = "my_game_sport" ><%= @game.address %> </h4>
+                  </li>
+                </ol>
+                <% end %>
+                <%= will_paginate @going_games %>
+              <% end %>
+            </div>
+          </div>
+
         </div>
 
 
