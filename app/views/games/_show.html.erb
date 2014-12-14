@@ -11,8 +11,15 @@
 		</p>
 		<p>
   		  <strong>Game time:</strong> 
-  		    <%= @game.game_time %>
+          <% if @game.game_time? %>
+  		    <%= @game.game_time.to_formatted_s(:long)  %>
+          <% end %>
 		</p>
+    <p>
+      <div id="total_gamers">
+        <%= render 'games/total_gamers' %>
+      </div>
+    </p>
     <p>
       <div id="show_game_form">
         <% if signed_in? %>

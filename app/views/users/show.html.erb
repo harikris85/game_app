@@ -45,7 +45,13 @@
                 <ol class="list-group">
                   <li class="list-group-item my_game" > 
                     <h4 class = "my_game_sport" ><%= @my_game.sport %> </h4> 
-                    <h4 class = "my_game_address"> <%= @my_game.address %> </h4>
+                    <h4 class = "my_game_address"> 
+                    <%= @my_game.address %>  
+                    <% if current_user?(@my_game.user) %>
+                      <%= link_to "delete", @my_game, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+                    <% end %>
+                    </h4>
                   </li>
                 </ol>
                 <% end %>
@@ -64,11 +70,15 @@
             </div>
             <div class="panel-body">
               <% if @user.going_games.any? %>
-                <% for @game in @going_games %>
+                <% for @going_game in @going_games %>
                 <ol class="list-group">
                   <li class="list-group-item my_game" > 
-                    <h4 class = "my_game_sport" ><%= @game.sport %> </h4>
-                    <h4 class = "my_game_sport" ><%= @game.address %> </h4>
+                    <h4 class = "my_game_sport" ><%= @going_game.sport %> </h4>
+                    <h4 class = "my_game_sport" >
+                      <%= @going_game.address %> 
+                      <%= link_to "delete", current_user.gamers.find_by(going_game_id: @going_game.id), method: :delete,
+                                       data: { confirm: "You sure?" } %>
+                    </h4>
                   </li>
                 </ol>
                 <% end %>
