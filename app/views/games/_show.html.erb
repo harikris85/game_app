@@ -16,6 +16,10 @@
           <% end %>
 		</p>
     <p>
+        <strong>Posted by:</strong> 
+          <%= link_to @game.user.name , user_path(@game.user) %>
+    </p>
+    <p>
       <div id="total_gamers">
         <%= render 'games/total_gamers' %>
       </div>

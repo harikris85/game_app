@@ -4,6 +4,8 @@ class StaticPagesController < ApplicationController
   	if ((cookies[:sport]).nil?) 
   		#@game = @all_games.where(sport: "Football")
       @game = @all_games
+    elsif (cookies[:sport] == "All")
+      @game = @all_games
   	else
   		@game = @all_games.where(sport: cookies[:sport])
   	end
@@ -16,7 +18,7 @@ class StaticPagesController < ApplicationController
       image = "/assets/cricket.png"
     elsif (game.sport == "Basketball")
       image = "/assets/basketball.png"
-    else
+    elsif (game.sport == "Volleyball")
       image = "/assets/volleyball.png"
     end
 
