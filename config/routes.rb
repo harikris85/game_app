@@ -1,7 +1,7 @@
 Protov1App::Application.routes.draw do
   resources :users do
       member do
-      get :going_games
+      get :going_games, :following, :followers
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
@@ -12,6 +12,7 @@ Protov1App::Application.routes.draw do
   end
   resources :gamers, only: [:create, :destroy]
   resources :display_game_map, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
   root  'static_pages#home'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'

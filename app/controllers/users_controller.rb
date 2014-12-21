@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:edit, :update]
+  before_action :signed_in_user, only: [:edit, :update,:following, :followers]
   before_action :correct_user,   only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
     @game = @user.games.build
-    @my_games = @user.games.paginate(page: params[:page], per_page: 2)
-    @going_games = @user.going_games.paginate(page: params[:page], per_page: 2)
+    @my_games = @user.games.paginate(page: params[:page], per_page: 3)
+    @going_games = @user.going_games.paginate(page: params[:page], per_page: 3)
   end
 
   def new
@@ -34,6 +34,20 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def following
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   private
