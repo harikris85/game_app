@@ -5,11 +5,22 @@ class GamesController < ApplicationController
 
   def create
   	@game = current_user.games.build(game_params)
-    if @game.save
-      flash[:success] = "Game created!"
-      redirect_to current_user
-    else
-      render 'static_pages/home'
+    respond_to do |format|
+      if @game.save
+        @created_game = @game
+        @game_info_window = render_to_string(:partial => 'games/show', :layout => false, :format => :html, :locals => { :@game => @game })
+        #raise @game_show.inspect
+        format.html {redirect_to current_user, notice: 'Game created !'}
+        format.json {
+          render :json => {
+          :saved_game => @created_game, 
+          :game_show => @game_info_window
+          }
+        }
+        format.js {render json: @created_game.to_json}
+      else
+        render 'static_pages/home'
+      end
     end
   end
 

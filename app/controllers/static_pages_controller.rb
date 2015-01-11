@@ -29,6 +29,9 @@ class StaticPagesController < ApplicationController
   		})  	
     marker.infowindow render_to_string(:partial => 'games/show', :layout => false, :locals => { :@game => game })   
     end
+
+    @new_game = current_user.games.build if (!current_user.nil?)
+
   end
 
   def help

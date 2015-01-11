@@ -1,39 +1,17 @@
 <% provide(:title, 'Home') %>
 <header class="intro">
     <div class="intro-body">
-    <!--
-        <div class="container">
-            <div class="row google-map-custom">
-                <div class="col-md-12">
-                  <%= render 'shared/google_map' %>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                  <%= render 'shared/display_game_map' %>
-                </div>
-                <div class="col-md-2 col-md-offset-2">
-                  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
-                </div>
-            </div>
-        </div>
-        -->
-
       <div class="padding">
         <div class="full col-sm-9">                    
           <div class="row">
-
-
             <div class="col-sm-10 col-sm-offset-1">
               <div class="panel panel-default"> 
-                <div class="panel-body">
+                <div class="panel-body" id="google_sports_map">
                     <%= render 'shared/google_map' %>
                 </div>
               </div>
             </div>
-
             <div class="col-sm-10 col-sm-offset-1">
-
               <div class="col-sm-3 col-sm-offset-4"> 
                   <div class="panel panel-default panel-transparent"> 
                     <%= render 'shared/display_game_map' %>
@@ -42,18 +20,40 @@
 
               <div class="col-sm-2 col-sm-offset-3"> 
                   <div class="panel panel-default panel-transparent"> 
-                    <div class="panel-body">
-                      <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>  
-                    </div>
+                    <% if signed_in? %>
+                      <div class="panel-body">
+                        <%= link_to 'Create sports event', '#new_game_modal', 'data-toggle' => 'modal', class: "btn btn-large btn-primary" %>
+                      </div>
+                    <% else %> 
+                      <div class="panel-body">
+                        <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>  
+                      </div>
+                    <% end %>
                   </div>
               </div>
-
             </div>  
-                  
-
           </div>
         </div>
       </div>
 
     </div>
 </header>
+
+<% if signed_in? %>
+<div class="modal fade" id="new_game_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Create new sports event</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'shared/game_form', modal: true %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

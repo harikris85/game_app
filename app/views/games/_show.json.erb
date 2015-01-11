@@ -1,0 +1,38 @@
+<div class="show_sports_info">
+  <aside class="span4">
+    <section>
+		<p>
+  		  <strong>Sport:</strong> 
+  		    <%= @game.sport %>
+		</p>
+		<p>
+  		  <strong>Description:</strong> 
+  		    <%= @game.description %>
+		</p>
+		<p>
+  		  <strong>Game time:</strong> 
+          <% if @game.game_time? %>
+  		    <%= @game.game_time.to_formatted_s(:long)  %>
+          <% end %>
+		</p>
+    <p>
+        <strong>Posted by:</strong> 
+          <%= link_to @game.user.name , user_path(@game.user) %>
+    </p>
+    <p>
+      <div id="total_gamers">
+        <%= render 'games/total_gamers' %>
+      </div>
+    </p>
+    <p>
+      <div id="show_game_form">
+        <% if signed_in? %>
+          <%= render 'games/going_game_form' %>
+        <% else %>
+          <%= link_to "Sign up to join game", signup_path, class: "btn btn-large btn-primary" %>
+        <% end %>
+      </div>  
+    </p>   
+    </section>
+  </aside>
+</div>

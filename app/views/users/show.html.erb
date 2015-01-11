@@ -29,76 +29,92 @@
               <%= render 'follow_form' if signed_in? %>
             </div>
           </div>
-
         </div>
 
         <div class="col-sm-7">   
 
-          <div class="panel panel-default"> 
-            <div class="panel-heading"> 
-              <h4> 
-                <% if @user.games.any? %>
-                  <%=@user.name%> Games (<%= @user.games.count %>)
-                <% end %>
-              </h4>
-            </div>
-            <div class="panel-body">
-              <% if @user.games.any? %>
-                <% for @my_game in @my_games %>
-                <ol class="list-group">
-                  <li class="list-group-item my_game" > 
-                    <h4 class = "my_game_sport" ><%= @my_game.sport %> </h4> 
-                    <h4 class = "my_game_address"> 
-                    <%= @my_game.address %>  
-                    <% if current_user?(@my_game.user) %>
-                      <%= link_to "delete", @my_game, method: :delete,
-                                       data: { confirm: "You sure?" } %>
-                    <% end %>
-                    </h4>
-                  </li>
-                </ol>
-                <% end %>
-                <%= will_paginate @my_games %>
-              <% end %>
-            </div>
-          </div>
+          <div role="tabpanel">
 
-          <div class="panel panel-default"> 
-            <div class="panel-heading"> 
-              <h4>
-                <% if @user.going_games.any? %>
-                  <%=@user.name%> Going Games (<%= @user.going_games.count %>)
-                <% end %>  
-              </h4>
-            </div>
-            <div class="panel-body">
-              <% if @user.going_games.any? %>
-                <% for @going_game in @going_games %>
-                <ol class="list-group">
-                  <li class="list-group-item my_game" > 
-                    <h4 class = "my_game_sport" ><%= @going_game.sport %> </h4>
-                    <h4 class = "my_game_sport" >
-                      <%= @going_game.address %> 
-                      <% if current_user?(@my_game.user) %>
-                        <%= link_to "delete", current_user.gamers.find_by(going_game_id: @going_game.id), method: :delete,
-                                       data: { confirm: "You sure?" } %>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">My Games</a></li>
+              <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">My Followers Games</a></li>
+              <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Followers</a></li>
+              <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Following</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="home">
+                <div class="panel panel-default"> 
+                  <div class="panel-body">
+                    <% if @user.games.any? %>
+                      <% for @my_game in @my_games %>
+                      <ol class="list-group">
+                        <li class="list-group-item my_game" > 
+                          <h4 class = "my_game_sport" ><%= @my_game.sport %> </h4> 
+                          <h4 class = "my_game_address"> 
+                          <%= @my_game.address %>  
+                          <% if current_user?(@my_game.user) %>
+                            <%= link_to "delete", @my_game, method: :delete,
+                                             data: { confirm: "You sure?" } %>
+                          <% end %>
+                          </h4>
+                        </li>
+                      </ol>
                       <% end %>
-                    </h4>
-                  </li>
-                </ol>
-                <% end %>
-                <%= will_paginate @going_games %>
-              <% end %>
+                      <%= will_paginate @my_games %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="profile">
+                <div class="panel panel-default"> 
+                  <div class="panel-body">
+                    <% if @user.going_games.any? %>
+                      <% for @going_game in @going_games %>
+                      <ol class="list-group">
+                        <li class="list-group-item my_game" > 
+                          <h4 class = "my_game_sport" ><%= @going_game.sport %> </h4>
+                          <h4 class = "my_game_sport" >
+                            <%= @going_game.address %> 
+                            <% if current_user?(@going_game.user) %>
+                              <%= link_to "delete", current_user.gamers.find_by(going_game_id: @going_game.id), method: :delete,
+                                             data: { confirm: "You sure?" } %>
+                            <% end %>
+                          </h4>
+                        </li>
+                      </ol>
+                      <% end %>
+                      <%= will_paginate @going_games %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="messages">
+                <div class="panel panel-default"> 
+                  <div class="panel-body">
+                    <% if @user.going_games.any? %>
+                      <% for @going_game in @going_games %>
+                      <ol class="list-group">
+                        <li class="list-group-item my_game" > 
+                          <%= render 'show_follow' %>
+                        </li>
+                      </ol>
+                      <% end %>
+                      <%= will_paginate @going_games %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="settings">...</div>
             </div>
           </div>
-
         </div>
 
 
         <div class="col-sm-3">
-          <% if current_user?(@user) %>
-           <%= render 'shared/game_form' %>
-          <% end %>
+
         </div> 
 
       </div>

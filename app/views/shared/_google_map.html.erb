@@ -3,11 +3,45 @@
     <div style='width: 100%;'>
       <div id="map" style='width: 100%; height: 400px;'></div>
     </div>
-    <script type="text/javascript">
+   <script type="text/javascript">
     handler = Gmaps.build('Google');
+    function displayOnMap(json){
+       var parsed_json = JSON.parse(json);
+       var marker_url = marker_image(parsed_json.saved_game.sport);
+       var marker = handler.addMarker({
+        lat: parsed_json.saved_game.latitude,
+        lng: parsed_json.saved_game.longitude,
+        picture: {
+                url: marker_image(parsed_json.saved_game.sport),
+                width: 32,
+                height: 37
+         },
+        infowindow: parsed_json.game_show
+      }); 
+       handler.map.centerOn(marker);
+    }
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
     markers = handler.addMarkers(<%=raw @hash.to_json %>);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
     });
+
+    function marker_image(sport){
+      if (sport == "Cricket") {
+        image = "/assets/cricket.png";
+      } else if (sport == "Football") {
+        image = "/assets/soccer.png";
+      }
+        else if (sport == "Volleyball"){
+          image = "/assets/volleyball.png";            
+        }
+        else if (sport == "Basketball"){
+          image = "/assets/basketball.png";
+        }
+        else {
+          image = "/assets/soccer.png";
+        }
+        return image;
+    }
+
     </script>

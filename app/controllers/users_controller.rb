@@ -5,8 +5,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @game = @user.games.build
-    @my_games = @user.games.paginate(page: params[:page], per_page: 3)
-    @going_games = @user.going_games.paginate(page: params[:page], per_page: 3)
+    @my_games = @user.games.paginate(page: params[:page], per_page: 5)
+    @going_games = @user.going_games.paginate(page: params[:page], per_page: 5)
+    @following = @user.following.paginate(page: params[:page])
+    @followers = @user.followers.paginate(page: params[:page])
   end
 
   def new
