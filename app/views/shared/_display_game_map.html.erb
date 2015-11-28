@@ -3,7 +3,7 @@
     <%= form_for(:display_game_map, url: display_game_map_index_path) do |f| %>
 
       <%= f.label :sport %>
-      <%= f.select :sport, options_for_select(["Badminton", "Baseball", "Basket ball", "Billard", "Chess", "Climbing", "Cricket", "Cycling", "Fitness", "Football", "Golfing", "Hangout", "Hiking", "Jogging", "Motorbike", "Squash", "Swimming", "Table tennis", "Tennis", "US football", "Volley ball", "Yoga"])%>
+      <%= f.select :sport, options_for_select(["All", "Badminton", "Baseball", "Basket ball", "Billard", "Chess", "Climbing", "Cricket", "Cycling", "Fitness", "Football", "Golfing", "Hangout", "Hiking", "Jogging", "Motorbike", "Squash", "Swimming", "Table tennis", "Tennis", "US football", "Volley ball", "Yoga"])%>
 
   	<%= f.submit "Search Sport", class: "btn btn-large btn-primary" %>
 	<% end %>
