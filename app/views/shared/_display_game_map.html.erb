@@ -5,6 +5,9 @@
       <%= f.label :sport %>
       <%= f.select :sport, options_for_select(["All", "Badminton", "Baseball", "Basket ball", "Billard", "Chess", "Climbing", "Cricket", "Cycling", "Fitness", "Football", "Golfing", "Hangout", "Hiking", "Jogging", "Motorbike", "Squash", "Swimming", "Table tennis", "Tennis", "US football", "Volley ball", "Yoga"])%>
 
+      <%= f.label :location %>
+      <%= f.text_field :location, placeholder: "Bangalore India"%>
+
   	<%= f.submit "Search Sport", class: "btn btn-large btn-primary" %>
 	<% end %>
  </div>

@@ -1,14 +1,31 @@
 class StaticPagesController < ApplicationController
   def home
+
   	@all_games = Game.all
+
   	if ((cookies[:sport]).nil?) 
-  		#@game = @all_games.where(sport: "Football")
       @game = @all_games
     elsif (cookies[:sport] == "All")
       @game = @all_games
   	else
   		@game = @all_games.where(sport: cookies[:sport])
   	end
+    
+    # Get Location
+    if (cookies[:lattitude].nil?)
+
+      @center_on_location_lat = 12.965
+      @center_on_location_lng = 77.584
+
+    else 
+
+      @center_on_location_lat = cookies[:lattitude] 
+      @center_on_location_lng = cookies[:longitude]   
+
+    end 
+
+    delete_cookies();
+
 	@hash = Gmaps4rails.build_markers(@game) do |game, marker|
   	marker.lat game.latitude
   	marker.lng game.longitude
@@ -75,4 +92,13 @@ class StaticPagesController < ApplicationController
 
   def about
   end
+
+  private 
+
+    def delete_cookies()
+      cookies.delete(:sport)
+      cookies.delete(:lattitude)
+      cookies.delete(:longitude)
+    end
+
 end
