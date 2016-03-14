@@ -52,11 +52,13 @@
                       <% for @my_game in @my_games %>
                       <ol class="list-group">
                         <li class="list-group-item my_game" > 
-                          <h4 class = "my_game_sport" ><%= @my_game.sport %> </h4> 
-                          <h4 class = "my_game_address"> 
-                          <%= @my_game.address %>  
+                          <div id = "display_game_details"> 
+                            <%= render "shared/display_game_details" %>
+                          </div>
+                          <h4>
                           <% if current_user?(@my_game.user) %>
-                            <%= link_to "delete", @my_game, method: :delete,
+                            <%= link_to 'Edit ', edit_game_path(@my_game), remote: true %>
+                            <%= link_to "delete ", @my_game, method: :delete,
                                              data: { confirm: "You sure?" } %>
                           <% end %>
                           </h4>
@@ -120,3 +122,6 @@
       </div>
      </div>
  </header>
+
+ <div class="modal fade" id="edit_game_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div>

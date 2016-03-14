@@ -30,6 +30,19 @@ class GamesController < ApplicationController
     redirect_to current_user
   end
 
+  def edit 
+    @edit_game = current_user.games.find(params[:id])
+  end
+
+  def update 
+    @edit_game = current_user.games.find(params[:id])
+    @my_game   = @edit_game
+      if @edit_game.update_attributes(game_params)
+      else
+        render 'user/show'
+      end
+  end
+
   def show
   end
 

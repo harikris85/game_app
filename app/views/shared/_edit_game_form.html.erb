@@ -1,0 +1,45 @@
+   <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Edit sports event</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for(@edit_game, remote: true, html: { style: "display:inline;" }) do |f| %>
+          <div class="form-group">
+            <%= f.label :address %>
+            <%= f.text_field :address, placeholder: "Newyork usa"%>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :sport %>
+            <%= f.select :sport, options_for_select(["Badminton", "Baseball", "Basket ball", "Billard", "Chess", "Climbing", "Cricket", "Cycling", "Fitness", "Football", "Golfing", "Hangout", "Hiking", "Jogging", "Motorbike", "Squash", "Swimming", "Table tennis", "Tennis", "US football", "Volley ball", "Yoga"])%>    
+          </div>
+
+          <div class="form-group">
+            <%= f.label :description %>
+            <%= f.text_area :description,  placeholder: "Add a small description..."%>
+          </div>
+
+          <div class="date form-group" id='datetimepicker1'>
+            <%= f.label :game_time %>
+            <%= f.datetime_select :game_time, :order => [:month, :day, :year], :minute_step => 15 %>
+          </div>
+
+          <div class="form-group">
+           <%= f.submit "Update", class: "btn btn-large btn-primary" %>
+          </div>
+
+       <% end %>
+
+        <script type="text/javascript">
+          $(function () {
+            $('#datetimepicker1').datetimepicker();
+          });
+        </script>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
